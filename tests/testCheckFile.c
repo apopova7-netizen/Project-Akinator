@@ -28,27 +28,27 @@ int main() {
     int failed = 0;
     int total = sizeof(tests) / sizeof(tests[0]);
     
-    printf("=== ТЕСТИРОВАНИЕ CheckFile ===\n\n");
+    printf("=== CheckFile TESTING ===\n\n");
     
     for (int i = 0; i < total; i++) {
         int result = CheckFile(tests[i].file);
         
-        printf("Тест %d: %s\n", i + 1, tests[i].message);
-        printf("  Файл: %s\n", tests[i].file);
-        printf("  Результат: %d (ожидалось: %d)\n", result, tests[i].expected);
+        printf("Test %d: %s\n", i + 1, tests[i].message);
+        printf("  File: %s\n", tests[i].file);
+        printf("  Result: %d (expected: %d)\n", result, tests[i].expected);
         
         if (result == tests[i].expected) {
-            printf("ПРОЙДЕН\n\n");
+            printf("PASSED\n\n");
             passed++;
         } else {
-            printf("НЕ ПРОЙДЕН\n\n");
+            printf("FAILED\n\n");
             failed++;
         }
     }
     
-    printf("=== ИТОГ ===\n");
-    printf("Пройдено: %d/%d\n", passed, total);
-    printf("Не пройдено: %d\n", failed);
+    printf("=== SUMMARY ===\n");
+    printf("Passed: %d/%d\n", passed, total);
+    printf("Failed: %d\n", failed);
     
     return 0;
 }
