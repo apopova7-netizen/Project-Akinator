@@ -25,13 +25,17 @@ char* GetNewWord() {
 
 char* GetQuestion(char* wrongAnswer, char* rightAnswer) {
     printf("Какой вопрос отличает %s от %s?\n", wrongAnswer, rightAnswer);  
-    char* question  = malloc(200 * sizeof(char));
-    if (question  == NULL) return NULL;
-    scanf("%199s", question );
-    printf("Как отвечать на этот вопрос для %s?\n", rightAnswer);
+    char* question = malloc(1000 * sizeof(char));
+    if (question == NULL) return NULL;
 
+    while (getchar() != '\n');
+    fgets(question, 1000, stdin);
+    question[strcspn(question, "\n")] = '\0';
+
+    printf("Как отвечать на этот вопрос для %s?\n", rightAnswer);
+    
     return question;
-} 
+}
 
 void Start() {
     printf("Загадайте слово или словосочетание на тему 'Еда и напитки'.\n");
