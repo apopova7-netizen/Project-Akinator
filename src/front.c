@@ -29,18 +29,18 @@ char* GetNewWord() {
 }
 
 char* GetQuestion(char* wrongAnswer, char* rightAnswer) {
-    printf("Какой вопрос отличает %s от %s?\n", wrongAnswer, rightAnswer);  
+    printf("Какой вопрос отличает %s от %s?\n", wrongAnswer, rightAnswer);
     char* question = malloc(1000);
     if (question == NULL) return NULL;
-    
+
     if (fgets(question, 1000, stdin) == NULL) {
         free(question);
         return NULL;
     }
     
     question[strcspn(question, "\n")] = '\0';
+
     printf("Как отвечать на этот вопрос для %s?\n", rightAnswer);
-    
     return question;
 }
 
