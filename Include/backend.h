@@ -12,7 +12,8 @@ typedef struct TreeNode{
 } TreeNode;
 
 TreeNode* LoadTreeFile(const char* fileName, int* g, int* ng);
+TreeNode* CreateQuestionNode(char* question, char* rightAnswer, char* wrongAnswer);
+void SaveTreeToFile(TreeNode* root, const char* fileName, int g, int ng);
 void FreeTree(TreeNode* root);
-void SaveTreeToFile(TreeNode* root, const char* fileName);
 
 #endif
