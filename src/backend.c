@@ -5,10 +5,15 @@ It also determines the type and level of nesting.
 returns the char* allocated via malloc
 */
 char* ReadLine(FILE* fl, char* type, int* level){
-    long position = ftell(fl);
-    size_t lineLen = 0;
+    long position;
     int sym;
     int cntAst = 0;
+    size_t lineLen = 0;
+
+    while ((sym = fgetc(fl)) == '\n' || sym == '\r');
+    
+    if (sym == EOF) 
+        return NULL;
 
     while (((sym = fgetc(fl)) == '*'))
         cntAst++;
@@ -16,7 +21,7 @@ char* ReadLine(FILE* fl, char* type, int* level){
     *level = cntAst;
 
     position = ftell(fl);
-    while ((sym = fgetc(fl)) != '\n' && sym != EOF)
+    while ((sym = fgetc(fl)) != '\n' && sym != '\r' && sym != EOF)
         lineLen++;
     char* buffer = (char*)malloc(lineLen + 1);
     if (buffer == NULL)
@@ -24,9 +29,6 @@ char* ReadLine(FILE* fl, char* type, int* level){
     fseek(fl, position, SEEK_SET);
     fread(buffer, 1, lineLen, fl);
     buffer[lineLen] = '\0';
-
-    if (sym != EOF)
-        fgetc(fl);
 
     return buffer;
 }
@@ -70,7 +72,6 @@ TreeNode* LoadTreeFile(const char* fileName, int* g, int* ng){
     fclose(tree);
     return stack[0];
 }
-
 
 TreeNode* CreateAnswerNode(char* answer){
     TreeNode* node = (TreeNode*)malloc(sizeof(TreeNode));
