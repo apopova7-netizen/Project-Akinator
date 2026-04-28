@@ -86,6 +86,7 @@ void ShowStatic(int guess, int noguess) {
     printf("Не угадано: %d\n", noguess);
 }
 
+
 int CheckFile(const char* filename) {
     if (filename == NULL) return 0;
 
@@ -98,24 +99,57 @@ int CheckFile(const char* filename) {
     int levels[100] = {0};
     int questions[100] = {0};
     int maxLevel = 0;
+    int guess, noguess = 0;
 
     while (fgets(line, sizeof(line), file)) {
         lineNumber++;
         line[strcspn(line, "\n")] = '\0'; 
-        if (strlen(line) == 0) 
-            return 0;
 
-        char firstChar = line[0];
-        if (firstChar != '*' &&  firstChar != '1') {
-            printf("Error in line %d: must start with '*' or '1'\n", lineNumber);
+        if (lineNumber == 1) {
+            int n1, n2;
+            char extra;
+    
+            if (sscanf(line, "|%d|%d|%c", &guess, &noguess, &extra) != 2) {
+                printf("Ошибка в строке 1: неверный формат статистики. Ожидается |У|Н|\n");
+                fclose(file);
+                return 0;
+            }
+            if (guess < 0 || noguess < 0) {
+                printf("Ошибка в строке 1: статистика не может быть отрицательной\n");
+                fclose(file);
+                return 0;
+            }
+            continue;
+        }
+
+        if (strlen(line) == 0) {
+            printf("ОШИБКА: пустая строка в строке %d\n", lineNumber);
             fclose(file);
             return 0;
         }
+        
+        char firstChar = line[0];
+        
+        if (lineNumber == 2) {
+            if (firstChar != '1') {
+                printf("Ошибка в строке %d: корень дерева должен начинаться с '1'\n", lineNumber);
+                fclose(file);
+                return 0;
+            }
+        }        
+         
+        else if (lineNumber > 2) {
+            if (firstChar != '*') {
+                printf("Ошибка в строке %d: строка должна начинаться с '*'\n", lineNumber);
+                fclose(file);
+                return 0;
+            }
+        }
 
-        //For the root level 
+        // For the root level
         if (firstChar == '1') {
-            if (lineNumber != 1) {
-                printf("Error in line %d: level '1' can only be in the first line\n", 
+            if (lineNumber != 2) {
+                printf("Ошибка в строке %d: уровень '1' может быть только на второй строке\n", 
                         lineNumber);
                 fclose(file);
                 return 0;
@@ -123,7 +157,7 @@ int CheckFile(const char* filename) {
             hasRoot = 1; 
 
             if (strlen(line) < 2) {
-                printf("Error in line %d: there is no text after 1\n", lineNumber);
+                printf("Ошибка в строке %d: нет текста после '1'\n", lineNumber);
                 fclose(file);
                 return 0;
             }
@@ -132,43 +166,42 @@ int CheckFile(const char* filename) {
             questions[0]++; 
         }
 
-        //For level c '*'
+        // For the co '*' level
         if (firstChar == '*') {
             int cntStars = 0;
             while (line[cntStars] == '*') {
                 cntStars++;
             }
 
-            if (line[cntStars] != '1' && line[cntStars]!= '0') {
-                printf("Error in line %d: there is no '0' or '1' after *.\n", lineNumber);
+            if (line[cntStars] != '1' && line[cntStars] != '0') {
+                printf("Ошибка в строке %d: нет '0' или '1' после '*'\n", lineNumber);
                 fclose(file);
                 return 0;
             }
 
-            if (strlen(line) <= cntStars + 1){
-                printf("Error in line %d: there should be text after '%c'\n", 
+            if (strlen(line) <= cntStars + 1) {
+                printf("Ошибка в строке %d: должен быть текст после '%c'\n", 
                         lineNumber, line[cntStars]);
                 fclose(file);
                 return 0;
             }
             
-            //Counting nodes and questions
+            // Counting nodes and questions
             levels[cntStars]++;
-            if (line[cntStars] == '1'){
+            if (line[cntStars] == '1') {
                 questions[cntStars]++;
             }
 
             if (cntStars > maxLevel) {
                 maxLevel = cntStars;
             }
-        
         }
     }
 
     fclose(file);
 
     if (!hasRoot) {
-        printf("Error: The file is empty or faulty.\n");
+        printf("Ошибка: файл пуст или поврежден\n");
         return 0;
     }
 
@@ -177,21 +210,20 @@ int CheckFile(const char* filename) {
         totalNodes += levels[i];
     }
 
+    // Checking the minimum size of the tree
     if (totalNodes < 3) {
-        printf("Error: the minimum size of the tree is 3 nodes (1 question + 2 objects)\n");
+        printf("Ошибка: минимальный размер дерева - 3 узла (1 вопрос + 2 ответа)\n");
         return 0;
     }
 
-    // Checking that each parent has 2 children
+    // Checking that each question has 2 descendants
     for (int i = 0; i < maxLevel; i++) {
         int children = questions[i] * 2;
         if (levels[i+1] != children) {
-            printf("Error: at the level of %d%d questions, there should be %d descendants, but at the level of %d - %d nodes\n",
-                   i, questions[i], children, i+1, levels[i+1]);
+            printf("Ошибка: на уровне %d есть %d вопросов, поэтому на уровне %d должно быть %d узлов, но обнаружено %d узлов\n",
+                   i, questions[i], i+1, children, levels[i+1]);
             return 0;
         }   
-    }
-    
+    }   
     return 1;
 }
-  
