@@ -106,7 +106,7 @@ void SaveNode(FILE* fl, TreeNode* node, int level){
         return;
     for (int i = 0; i < level; i++)
         fprintf(fl, "*");
-    fprintf(fl, "%c%s\n", node->type, node->data);
+    fprintf(fl, "%d%s\n", node->type, node->data);
     SaveNode(fl, node->right, level + 1);
     SaveNode(fl, node->left, level + 1);
 }
