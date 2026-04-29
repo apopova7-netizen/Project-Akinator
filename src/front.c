@@ -36,7 +36,8 @@ char* GetNewWord() {
 }
 
 char* GetQuestion(char* wrongAnswer, char* rightAnswer) {
-    printf("Какой вопрос отличает %s от %s?\n", wrongAnswer, rightAnswer);
+    printf("Какой вопрос отличает %s от %s? Введите вопрос, на который можно ответить только да или нет.\n", 
+            wrongAnswer, rightAnswer);
     char* question = malloc(1000);
     if (question == NULL) return NULL;
 
