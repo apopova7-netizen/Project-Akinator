@@ -15,8 +15,10 @@ char* ReadLine(FILE* fl, char* type, int* level){
     if (sym == EOF) 
         return NULL;
 
-    while (((sym = fgetc(fl)) == '*'))
+    while (sym == '*'){
         cntAst++;
+        sym = fgetc(fl);
+    }
     *type = sym - '0';
     *level = cntAst;
 
