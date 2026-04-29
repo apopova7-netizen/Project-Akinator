@@ -2,29 +2,36 @@
 
 char GetAnswer() {
     char a[10];
+    int c;
+    
     while (1) {
-        if (scanf("%9s", a) != 1)  
-            return 'e';
-        printf("Введите да или нет.\n");
-        scanf("%9s", a);
-        if (strcmp(a, "да") == 0 || strcmp(a, "Да") == 0 
-            || strcmp(a, "ДА") == 0)
-            return 'y'; 
-        else if (strcmp(a, "нет") == 0 || strcmp(a, "Нет") == 0 
-                || strcmp(a, "НЕТ") == 0)
+        printf("Введите да или нет: ");
+        if (scanf("%9s", a) != 1) {
+            while ((c = getchar()) != '\n' && c != EOF);
+            return 0;
+        }
+        while ((c = getchar()) != '\n' && c != EOF);
+
+        if (strcmp(a, "да") == 0 || strcmp(a, "Да") == 0 || strcmp(a, "ДА") == 0) {
+            return 'y';
+        }
+        else if (strcmp(a, "нет") == 0 || strcmp(a, "Нет") == 0 || strcmp(a, "НЕТ") == 0) {
             return 'n';
-        else 
+        }
+        else {
             printf("Это недопустимый ответ. Введите да или нет.\n");
-    } 
-}  
+        }
+    }
+}
 
 char* GetNewWord() {
-    char* a = malloc(100 * sizeof(char));
+    char* a = malloc(200 * sizeof(char));
     if (a == NULL) return NULL;
-    if (scanf("%99s", a) != 1) { 
+    if (fgets(a, 200, stdin) == NULL) { 
         free(a);
         return NULL;
     }
+    a[strcspn(a, "\n")] = '\0';
     return a;
 }
 
@@ -52,7 +59,6 @@ void PrintQuestion(TreeNode* cur) {
     if (cur == NULL)
         return;
     printf("%s\n", cur -> data);
-    printf("Введите да или нет.\n");
 }
 
 void Assumption(TreeNode* cur) {
