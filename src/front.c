@@ -65,7 +65,7 @@ void PrintQuestion(TreeNode* cur) {
 void Assumption(TreeNode* cur) {
     if (cur == NULL)
         return;
-    printf("Это %s?\n", cur -> data);
+    printf("Вы загадали: %s?\n", cur -> data);
 } 
 
 void Victory() {
