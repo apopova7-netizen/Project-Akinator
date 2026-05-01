@@ -22,6 +22,8 @@ void TestGetQuestion(){
     free(answer2);
 
     fclose(stdin);
+
+    remove("testNQ1.txt");
 }
 
 void TestGetNewWord() {
@@ -52,6 +54,8 @@ void TestGetNewWord() {
 
     fclose(stdin);
     
+    remove("testNW1.txt");
+    remove("testNW2.txt");
 }
 
 

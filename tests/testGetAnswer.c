@@ -12,22 +12,30 @@ int main() {
     // test 1: yes/no
     CreateTestFile("t1.txt", "да\nнет\n");
     freopen("t1.txt", "r", stdin);
+
     assert(GetAnswer() == 'y');
     assert(GetAnswer() == 'n');
-    printf("Test 1 passed\n");
     
+    printf("Test 1 passed\n");
+    remove("t1.txt");
+
     // Test 2: End of file
     CreateTestFile("t2.txt", "");
     freopen("t2.txt", "r", stdin);
+
     assert(GetAnswer() == 'e');
+
     printf("Test 2 passed\n");
-    
+    remove("t2.txt");
+
     // Test 3: Incorrect → correct
     CreateTestFile("t3.txt", "неверно\nда\n");
     freopen("t3.txt", "r", stdin);
-    assert(GetAnswer() == 'y');
-    printf("Test 3 passed\n");
 
+    assert(GetAnswer() == 'y');
+    
+    printf("Test 3 passed\n");
+    remove("t3.txt");
 
     printf("\nAll tests passed!\n");
     return 0;

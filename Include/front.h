@@ -1,6 +1,6 @@
 #ifndef FRONT_H
 #define FRONT_H
-include "common.h"
+#include "common.h"
 
 char GetAnswer();
 char* GetNewWord();
