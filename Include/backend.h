@@ -1,21 +1,13 @@
 #ifndef BACKEND_H
 #define BACKEND_H
 
-#include <stdio.h>
-#include <stdlib.h>
+#include "common.h"
 
-#define STACK_SIZE 256
-enum Type { QUESTION = 1, ANSWER = 0}; 
-
-typedef struct TreeNode{
-    char type;
-    char* data;             // text
-    struct TreeNode* right; // yes
-    struct TreeNode* left;  // no
-} TreeNode;
-
+char* ReadLine(FILE* fl, char* type, int* level);
 TreeNode* LoadTreeFile(const char* fileName, int* g, int* ng);
+TreeNode* CreateAnswerNode(char* answer);
 TreeNode* CreateQuestionNode(char* questionText, char* rightAnswer, char* wrongAnswer);
+void SaveNode(FILE* fl, TreeNode* node, int level);
 void SaveTreeToFile(TreeNode* root, const char* fileName, int g, int ng);
 void FreeTree(TreeNode* root);
 
