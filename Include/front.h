@@ -17,5 +17,6 @@ void EndGame();
 int CheckFile(const char* filename);
 void StaticSee();
 void ShowStatic(int guess, int noguess);
+
                                               
 #endif  
