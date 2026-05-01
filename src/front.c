@@ -3,7 +3,7 @@
 char GetAnswer() {
     char a[10];
     int c;
-    
+
     while (1) {
         printf("Введите да или нет: ");
         if (scanf("%9s", a) != 1) {
@@ -27,7 +27,7 @@ char GetAnswer() {
 char* GetNewWord() {
     char* a = malloc(200 * sizeof(char));
     if (a == NULL) return NULL;
-    if (fgets(a, 200, stdin) == NULL) { 
+    if (fgets(a, 200, stdin) == NULL) {
         free(a);
         return NULL;
     }
@@ -36,7 +36,7 @@ char* GetNewWord() {
 }
 
 char* GetQuestion(char* wrongAnswer, char* rightAnswer) {
-    printf("Какой вопрос отличает %s от %s? Введите вопрос, на который можно ответить только да или нет.\n", 
+    printf("Какой вопрос отличает %s от %s? Введите вопрос, на который можно ответить только да или нет.\n",
             wrongAnswer, rightAnswer);
     char* question = malloc(1000);
     if (question == NULL) return NULL;
@@ -45,7 +45,7 @@ char* GetQuestion(char* wrongAnswer, char* rightAnswer) {
         free(question);
         return NULL;
     }
-    
+
     question[strcspn(question, "\n")] = '\0';
 
     printf("Как отвечать на этот вопрос для %s?\n", rightAnswer);
@@ -54,6 +54,10 @@ char* GetQuestion(char* wrongAnswer, char* rightAnswer) {
 
 void Start() {
     printf("Загадайте слово или словосочетание на тему 'Еда и напитки'.\n");
+}
+
+void MemoryError() {
+    printf("Ошибка выделения памяти.\n");
 }
 
 void PrintQuestion(TreeNode* cur) {
@@ -66,11 +70,22 @@ void Assumption(TreeNode* cur) {
     if (cur == NULL)
         return;
     printf("Вы загадали: %s?\n", cur -> data);
-} 
+}
 
 void Victory() {
     printf("Ура, я угадал!\n");
 }
+
+void DefaultTree() {
+    printf("Ваш файл неисправен, будет использоваться заготовленный файл.\n");
+
+}
+
+
+void DefaultTreeError() {
+    printf("Файл, используемый по умолчанию не исправен.\n");
+}
+
 
 void Mistake() {
     printf("Что это было на самом деле? Введите верный ответ.\n");
@@ -110,12 +125,12 @@ int CheckFile(const char* filename) {
 
     while (fgets(line, sizeof(line), file)) {
         lineNumber++;
-        line[strcspn(line, "\n")] = '\0'; 
+        line[strcspn(line, "\n")] = '\0';
 
         if (lineNumber == 1) {
             int n1, n2;
             char extra;
-    
+
             if (sscanf(line, "|%d|%d|%c", &guess, &noguess, &extra) != 2) {
                 printf("Ошибка в строке 1: неверный формат статистики. Ожидается |У|Н|\n");
                 fclose(file);
@@ -134,17 +149,17 @@ int CheckFile(const char* filename) {
             fclose(file);
             return 0;
         }
-        
+
         char firstChar = line[0];
-        
+
         if (lineNumber == 2) {
             if (firstChar != '1') {
                 printf("Ошибка в строке %d: корень дерева должен начинаться с '1'\n", lineNumber);
                 fclose(file);
                 return 0;
             }
-        }        
-         
+        }
+
         else if (lineNumber > 2) {
             if (firstChar != '*') {
                 printf("Ошибка в строке %d: строка должна начинаться с '*'\n", lineNumber);
@@ -156,12 +171,12 @@ int CheckFile(const char* filename) {
         // For the root level
         if (firstChar == '1') {
             if (lineNumber != 2) {
-                printf("Ошибка в строке %d: уровень '1' может быть только на второй строке\n", 
+                printf("Ошибка в строке %d: уровень '1' может быть только на второй строке\n",
                         lineNumber);
                 fclose(file);
                 return 0;
             }
-            hasRoot = 1; 
+            hasRoot = 1;
 
             if (strlen(line) < 2) {
                 printf("Ошибка в строке %d: нет текста после '1'\n", lineNumber);
@@ -170,7 +185,7 @@ int CheckFile(const char* filename) {
             }
 
             levels[0]++;
-            questions[0]++; 
+            questions[0]++;
         }
 
         // For the co '*' level
@@ -187,12 +202,12 @@ int CheckFile(const char* filename) {
             }
 
             if (strlen(line) <= cntStars + 1) {
-                printf("Ошибка в строке %d: должен быть текст после '%c'\n", 
+                printf("Ошибка в строке %d: должен быть текст после '%c'\n",
                         lineNumber, line[cntStars]);
                 fclose(file);
                 return 0;
             }
-            
+
             // Counting nodes and questions
             levels[cntStars]++;
             if (line[cntStars] == '1') {
@@ -230,7 +245,8 @@ int CheckFile(const char* filename) {
             printf("Ошибка: на уровне %d есть %d вопросов, поэтому на уровне %d должно быть %d узлов, но обнаружено %d узлов\n",
                    i, questions[i], i+1, children, levels[i+1]);
             return 0;
-        }   
-    }   
+        }
+    }
     return 1;
 }
+
