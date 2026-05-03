@@ -17,6 +17,6 @@ void EndGame();
 int CheckFile(const char* filename);
 void StaticSee();
 void ShowStatic(int guess, int noguess);
-
+void CreateTestFile(const char* name, const char* content);
                                               
 #endif  

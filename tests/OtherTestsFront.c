@@ -1,12 +1,5 @@
 #include "front.h" 
-#include <assert.h>
 
-
-void CreateTestFile(const char* name, const char* content) {
-    FILE* f = fopen(name, "w");
-    fprintf(f, "%s", content);
-    fclose(f);
-}
 
 void TestGetQuestion(){
     CreateTestFile("testNQ1.txt", "он красный?\nОн жёлтый?\n");

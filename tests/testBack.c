@@ -1,9 +1,13 @@
 #include "backend.h"
-#include <assert.h>
+#ifndef DATA_FILE2
+#define DATA_FILE2 "tests/trees/ForTestsFile"
+#endif
+
+
 
 void testsReadLine(){
-    FILE* file = fopen("testTree.txt", "r");
-    int g, ng;
+    FILE* file = fopen(DATA_FILE2 "/testTree.txt", "r");
+
     int level;
     char type;
     char* line = ReadLine(file, &type, &level);
@@ -17,22 +21,22 @@ void testsReadLine(){
 
     line = ReadLine(file, &type, &level);
     assert(strcmp("Играют руками?", line) == 0);
-    assert(level = 1);
+    assert(level == 1);
     assert(type == 1);
 
     line = ReadLine(file, &type, &level);
     assert(strcmp("баскетбол", line) == 0);
-    assert(level = 2);
+    assert(level == 2);
     assert(type == 0);
     
     line = ReadLine(file, &type, &level);
     assert(strcmp("футбол", line) == 0);
-    assert(level = 2);
+    assert(level == 2);
     assert(type == 0);
 
     line = ReadLine(file, &type, &level);
     assert(strcmp("Нужна вода?", line) == 0);
-    assert(level = 1);
+    assert(level == 1);
     assert(type == 1);
 
     free(line);
@@ -40,8 +44,8 @@ void testsReadLine(){
 }
 
 void testsLoadTreeFile(){
-    int g, ng;
-    TreeNode* root = LoadTreeFile("testTree.txt", &g, &ng);
+    int g = 0, ng = 0;
+    TreeNode* root = LoadTreeFile(DATA_FILE2 "/testTree.txt", &g, &ng);
     
     assert(root != NULL);
     
@@ -99,9 +103,9 @@ void testsLoadTreeFile(){
 
 void testsSaveTreeToFile(){
     int g = 0, ng = 0;
-    TreeNode* t = LoadTreeFile("testTree.txt", &g, &ng);
+    TreeNode* t = LoadTreeFile(DATA_FILE2 "/testTree.txt", &g, &ng);
 
-    SaveTreeToFile(t,"testingtree.txt", g, ng);
+    SaveTreeToFile(t, "testingtree.txt", g, ng);
 
     FILE* f = fopen("testingtree.txt", "r");
     

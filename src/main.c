@@ -1,5 +1,8 @@
 #include "front.h"
 #include "backend.h"
+#ifndef DATA_FILE
+#define DATA_FILE "tests/trees/extendedTrees"
+#endif
 
 int main(void) {
 
@@ -25,11 +28,11 @@ int main(void) {
         int guess = 0;
         int noguess = 0;
 
-        char filename[100] = "main_tree.txt";
+        char filename[100] = DATA_FILE "/main_tree.txt";
         if (!CheckFile(filename)) {
             //we warn that we will use the default file
             DefaultTree();
-            strcpy(filename, "default_tree.txt");
+            strcpy(filename, DATA_FILE "/default_tree.txt");
             //if the default one is faulty, then we end the game
             if (!CheckFile(filename)) {
                 DefaultTreeError();

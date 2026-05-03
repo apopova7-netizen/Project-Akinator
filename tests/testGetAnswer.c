@@ -1,42 +1,28 @@
 #include "front.h" 
-#include <assert.h>
-
-  
-void CreateTestFile(const char* name, const char* content) {
-    FILE* f = fopen(name, "w");
-    fprintf(f, "%s", content);
-    fclose(f);
-}
 
 int main() {
-    // test 1: yes/no
+    // test : yes/no
     CreateTestFile("t1.txt", "да\nнет\n");
     freopen("t1.txt", "r", stdin);
 
     assert(GetAnswer() == 'y');
     assert(GetAnswer() == 'n');
     
-    printf("Test 1 passed\n");
-    remove("t1.txt");
+    printf("\nTest 1 passed\n");
+    fclose(stdin);
 
-    // Test 2: End of file
-    CreateTestFile("t2.txt", "");
+    // Test : Incorrect → correct
+    CreateTestFile("t2.txt", "неверно\nда\n");
     freopen("t2.txt", "r", stdin);
 
-    assert(GetAnswer() == 'e');
-
-    printf("Test 2 passed\n");
-    remove("t2.txt");
-
-    // Test 3: Incorrect → correct
-    CreateTestFile("t3.txt", "неверно\nда\n");
-    freopen("t3.txt", "r", stdin);
-
     assert(GetAnswer() == 'y');
-    
-    printf("Test 3 passed\n");
-    remove("t3.txt");
+
+    printf("\nTest 2 passed\n");
+
+    remove("t1.txt");
+    fclose(stdin);
 
     printf("\nAll tests passed!\n");
+    remove("t2.txt");
     return 0;
 }

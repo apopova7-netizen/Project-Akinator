@@ -24,6 +24,12 @@ char GetAnswer() {
     }
 }
 
+void CreateTestFile(const char* name, const char* content) {
+    FILE* f = fopen(name, "w");
+    fprintf(f, "%s", content);
+    fclose(f);
+}
+
 char* GetNewWord() {
     char* a = malloc(200 * sizeof(char));
     if (a == NULL) return NULL;
@@ -47,6 +53,17 @@ char* GetQuestion(char* wrongAnswer, char* rightAnswer) {
     }
 
     question[strcspn(question, "\n")] = '\0';
+    
+    size_t len = strlen(question);
+    
+    if (question[len - 1] != '?'){
+        question = realloc(question, len + 2);
+        question[len] = '?';
+        question[len + 1] = '\0';
+    }
+        
+    
+    
 
     printf("Как отвечать на этот вопрос для %s?\n", rightAnswer);
     return question;
