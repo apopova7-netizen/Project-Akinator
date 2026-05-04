@@ -17,10 +17,12 @@ The program asks the user questions to be answered with "yes" or "no", and based
 ## File format with a tree
 
 The file should have the following structure:
+```bash
 |0|0|
 1Какой это фрукт?
 *0лимон
 *0апельсин
+```
 
 ## Compilation and launch
 ```bash
