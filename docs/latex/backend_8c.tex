@@ -1,0 +1,67 @@
+\doxysection{src/\+backend.c File Reference}
+\hypertarget{backend_8c}{}\label{backend_8c}\index{src/backend.c@{src/backend.c}}
+{\ttfamily \+\#include "{}backend.\+h"{}}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+char \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{backend_8c_ad7f0ff87fe5d20c88441addaf3ebdc8e}{Read\+Line}} (FILE \texorpdfstring{$\ast$}{*}fl, char \texorpdfstring{$\ast$}{*}type, int \texorpdfstring{$\ast$}{*}level)
+\item 
+\doxymbox{\hyperlink{struct_tree_node}{Tree\+Node}} \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{backend_8c_a74ae3145f74d16ad523c99f9a754a04a}{Load\+Tree\+File}} (const char \texorpdfstring{$\ast$}{*}file\+Name, int \texorpdfstring{$\ast$}{*}g, int \texorpdfstring{$\ast$}{*}ng)
+\item 
+\doxymbox{\hyperlink{struct_tree_node}{Tree\+Node}} \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{backend_8c_a356064c90455621d11d2ba059d4756f7}{Create\+Answer\+Node}} (char \texorpdfstring{$\ast$}{*}answer)
+\item 
+\doxymbox{\hyperlink{struct_tree_node}{Tree\+Node}} \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{backend_8c_af645887f0eee03c8db2a987727518f56}{Create\+Question\+Node}} (char \texorpdfstring{$\ast$}{*}question\+Text, char \texorpdfstring{$\ast$}{*}right\+Answer, char \texorpdfstring{$\ast$}{*}wrong\+Answer)
+\item 
+void \doxymbox{\hyperlink{backend_8c_a9f2edeaae717bbacb9fa40333355729a}{Save\+Node}} (FILE \texorpdfstring{$\ast$}{*}fl, \doxymbox{\hyperlink{struct_tree_node}{Tree\+Node}} \texorpdfstring{$\ast$}{*}node, int level)
+\item 
+void \doxymbox{\hyperlink{backend_8c_abd80c066e15c94e60c035ca1ddd8dd03}{Save\+Tree\+To\+File}} (\doxymbox{\hyperlink{struct_tree_node}{Tree\+Node}} \texorpdfstring{$\ast$}{*}root, const char \texorpdfstring{$\ast$}{*}file\+Name, int g, int ng)
+\item 
+void \doxymbox{\hyperlink{backend_8c_aeb350f54d4d4aa1522ae56f474006183}{Free\+Tree}} (\doxymbox{\hyperlink{struct_tree_node}{Tree\+Node}} \texorpdfstring{$\ast$}{*}root)
+\end{DoxyCompactItemize}
+
+
+\label{doc-func-members}
+\Hypertarget{backend_8c_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{backend_8c_a356064c90455621d11d2ba059d4756f7}\index{backend.c@{backend.c}!CreateAnswerNode@{CreateAnswerNode}}
+\index{CreateAnswerNode@{CreateAnswerNode}!backend.c@{backend.c}}
+\doxysubsubsection{\texorpdfstring{CreateAnswerNode()}{CreateAnswerNode()}}
+{\footnotesize\ttfamily \label{backend_8c_a356064c90455621d11d2ba059d4756f7} 
+\doxymbox{\hyperlink{struct_tree_node}{Tree\+Node}} \texorpdfstring{$\ast$}{*} Create\+Answer\+Node (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{answer}{}\end{DoxyParamCaption})}
+
+\Hypertarget{backend_8c_af645887f0eee03c8db2a987727518f56}\index{backend.c@{backend.c}!CreateQuestionNode@{CreateQuestionNode}}
+\index{CreateQuestionNode@{CreateQuestionNode}!backend.c@{backend.c}}
+\doxysubsubsection{\texorpdfstring{CreateQuestionNode()}{CreateQuestionNode()}}
+{\footnotesize\ttfamily \label{backend_8c_af645887f0eee03c8db2a987727518f56} 
+\doxymbox{\hyperlink{struct_tree_node}{Tree\+Node}} \texorpdfstring{$\ast$}{*} Create\+Question\+Node (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{question\+Text}{, }\item[{char \texorpdfstring{$\ast$}{*}}]{right\+Answer}{, }\item[{char \texorpdfstring{$\ast$}{*}}]{wrong\+Answer}{}\end{DoxyParamCaption})}
+
+\Hypertarget{backend_8c_aeb350f54d4d4aa1522ae56f474006183}\index{backend.c@{backend.c}!FreeTree@{FreeTree}}
+\index{FreeTree@{FreeTree}!backend.c@{backend.c}}
+\doxysubsubsection{\texorpdfstring{FreeTree()}{FreeTree()}}
+{\footnotesize\ttfamily \label{backend_8c_aeb350f54d4d4aa1522ae56f474006183} 
+void Free\+Tree (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{struct_tree_node}{Tree\+Node}} \texorpdfstring{$\ast$}{*}}]{root}{}\end{DoxyParamCaption})}
+
+\Hypertarget{backend_8c_a74ae3145f74d16ad523c99f9a754a04a}\index{backend.c@{backend.c}!LoadTreeFile@{LoadTreeFile}}
+\index{LoadTreeFile@{LoadTreeFile}!backend.c@{backend.c}}
+\doxysubsubsection{\texorpdfstring{LoadTreeFile()}{LoadTreeFile()}}
+{\footnotesize\ttfamily \label{backend_8c_a74ae3145f74d16ad523c99f9a754a04a} 
+\doxymbox{\hyperlink{struct_tree_node}{Tree\+Node}} \texorpdfstring{$\ast$}{*} Load\+Tree\+File (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{file\+Name}{, }\item[{int \texorpdfstring{$\ast$}{*}}]{g}{, }\item[{int \texorpdfstring{$\ast$}{*}}]{ng}{}\end{DoxyParamCaption})}
+
+\Hypertarget{backend_8c_ad7f0ff87fe5d20c88441addaf3ebdc8e}\index{backend.c@{backend.c}!ReadLine@{ReadLine}}
+\index{ReadLine@{ReadLine}!backend.c@{backend.c}}
+\doxysubsubsection{\texorpdfstring{ReadLine()}{ReadLine()}}
+{\footnotesize\ttfamily \label{backend_8c_ad7f0ff87fe5d20c88441addaf3ebdc8e} 
+char \texorpdfstring{$\ast$}{*} Read\+Line (\begin{DoxyParamCaption}\item[{FILE \texorpdfstring{$\ast$}{*}}]{fl}{, }\item[{char \texorpdfstring{$\ast$}{*}}]{type}{, }\item[{int \texorpdfstring{$\ast$}{*}}]{level}{}\end{DoxyParamCaption})}
+
+\Hypertarget{backend_8c_a9f2edeaae717bbacb9fa40333355729a}\index{backend.c@{backend.c}!SaveNode@{SaveNode}}
+\index{SaveNode@{SaveNode}!backend.c@{backend.c}}
+\doxysubsubsection{\texorpdfstring{SaveNode()}{SaveNode()}}
+{\footnotesize\ttfamily \label{backend_8c_a9f2edeaae717bbacb9fa40333355729a} 
+void Save\+Node (\begin{DoxyParamCaption}\item[{FILE \texorpdfstring{$\ast$}{*}}]{fl}{, }\item[{\doxymbox{\hyperlink{struct_tree_node}{Tree\+Node}} \texorpdfstring{$\ast$}{*}}]{node}{, }\item[{int}]{level}{}\end{DoxyParamCaption})}
+
+\Hypertarget{backend_8c_abd80c066e15c94e60c035ca1ddd8dd03}\index{backend.c@{backend.c}!SaveTreeToFile@{SaveTreeToFile}}
+\index{SaveTreeToFile@{SaveTreeToFile}!backend.c@{backend.c}}
+\doxysubsubsection{\texorpdfstring{SaveTreeToFile()}{SaveTreeToFile()}}
+{\footnotesize\ttfamily \label{backend_8c_abd80c066e15c94e60c035ca1ddd8dd03} 
+void Save\+Tree\+To\+File (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{struct_tree_node}{Tree\+Node}} \texorpdfstring{$\ast$}{*}}]{root}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{file\+Name}{, }\item[{int}]{g}{, }\item[{int}]{ng}{}\end{DoxyParamCaption})}
+

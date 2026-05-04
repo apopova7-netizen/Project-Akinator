@@ -1,0 +1,20 @@
+\doxysection{backend.\+h}
+\hypertarget{backend_8h_source}{}\label{backend_8h_source}\index{Include/backend.h@{Include/backend.h}}
+\doxymbox{\hyperlink{backend_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ BACKEND\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ BACKEND\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\doxymbox{\hyperlink{common_8h}{common.h}}"{}}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{keywordtype}{char}*\ \doxymbox{\hyperlink{backend_8h_ad7f0ff87fe5d20c88441addaf3ebdc8e}{ReadLine}}(FILE*\ fl,\ \textcolor{keywordtype}{char}*\ type,\ \textcolor{keywordtype}{int}*\ level);}
+\DoxyCodeLine{00007\ \doxymbox{\hyperlink{struct_tree_node}{TreeNode}}*\ \doxymbox{\hyperlink{backend_8h_a74ae3145f74d16ad523c99f9a754a04a}{LoadTreeFile}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ fileName,\ \textcolor{keywordtype}{int}*\ g,\ \textcolor{keywordtype}{int}*\ ng);}
+\DoxyCodeLine{00008\ \doxymbox{\hyperlink{struct_tree_node}{TreeNode}}*\ \doxymbox{\hyperlink{backend_8h_a356064c90455621d11d2ba059d4756f7}{CreateAnswerNode}}(\textcolor{keywordtype}{char}*\ answer);}
+\DoxyCodeLine{00009\ \doxymbox{\hyperlink{struct_tree_node}{TreeNode}}*\ \doxymbox{\hyperlink{backend_8h_af645887f0eee03c8db2a987727518f56}{CreateQuestionNode}}(\textcolor{keywordtype}{char}*\ questionText,\ \textcolor{keywordtype}{char}*\ rightAnswer,\ \textcolor{keywordtype}{char}*\ wrongAnswer);}
+\DoxyCodeLine{00010\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{backend_8h_a9f2edeaae717bbacb9fa40333355729a}{SaveNode}}(FILE*\ fl,\ \doxymbox{\hyperlink{struct_tree_node}{TreeNode}}*\ node,\ \textcolor{keywordtype}{int}\ level);}
+\DoxyCodeLine{00011\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{backend_8h_abd80c066e15c94e60c035ca1ddd8dd03}{SaveTreeToFile}}(\doxymbox{\hyperlink{struct_tree_node}{TreeNode}}*\ root,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ fileName,\ \textcolor{keywordtype}{int}\ g,\ \textcolor{keywordtype}{int}\ ng);}
+\DoxyCodeLine{00012\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{backend_8h_aeb350f54d4d4aa1522ae56f474006183}{FreeTree}}(\doxymbox{\hyperlink{struct_tree_node}{TreeNode}}*\ root);}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}
