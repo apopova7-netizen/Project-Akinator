@@ -1,30 +1,31 @@
 # Akinator
 
-Консольная игра на языке C, которая угадывает загаданные слова по теме "Еда и напитки" с помощью бинарного дерева вопросов.
+A C-language console game that guesses hidden words on the topic of "Food and Drink" using a binary question tree.
 
 ## Описание
 
-Программа задает пользователю вопросы, на которые нужно отвечать "да" или "нет", и на основе ответов перемещается по дереву вопросов, чтобы угадать загаданное слово. Если программа не угадала, она обучается: запоминает новое слово и задает пользователю вопрос, который поможет отличить новое слово от старого.
-
+The program asks the user questions to be answered with "yes" or "no", and based on the answers moves through the question tree to guess the hidden word. If the program doesn't guess correctly, it learns: it remembers a new word and asks the user a question that will help distinguish the new word from the old one.
 ## Функциональность
 
-- Загрузка дерева вопросов из текстового файла
-- Проверка корректности файла с деревом
-- Интерактивный диалог с пользователем
-- Обучение: добавление новых слов и вопросов
-- Сохранение обновленного дерева в файл
-- Статистика угадываний
+- Loading the question tree from a text file
+- Checking the correctness of the tree file
+- Interactive dialogue with the user
+- Learning: adding new words and questions
+- Saving the updated tree to a file
+- Guessing statistics
 
 ## Формат файла с деревом
 
-Файл должен иметь следующую структуру:
+The file should have the following structure:
 |0|0|
 1Какой это фрукт?
 *0лимон
 *0апельсин
 
 ## Компиляция и запуск
-mingw32-make # build the main program
-mingw32-make run # build and run the main program
-mingw32-make tests # build and run all tests
-mingw32-make clean # delete everything
+```bash
+mingw32-make         # build the main program
+mingw32-make run     # build and run the main program
+mingw32-make tests   # build and run all tests
+mingw32-make clean   # delete everything
+```
