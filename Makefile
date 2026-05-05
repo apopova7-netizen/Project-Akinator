@@ -96,4 +96,4 @@ clean:
 	@del /Q tests\*.o 2>nul
 	@del /Q $(TARGET).exe 2>nul
 	@del /Q tests\*.exe 2>nul
-	@echo "Cleanup complete"
+	@echo "Cleanup complete

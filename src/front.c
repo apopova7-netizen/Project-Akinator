@@ -145,7 +145,6 @@ int CheckFile(const char* filename) {
         line[strcspn(line, "\n")] = '\0';
 
         if (lineNumber == 1) {
-            int n1, n2;
             char extra;
 
             if (sscanf(line, "|%d|%d|%c", &guess, &noguess, &extra) != 2) {
@@ -218,7 +217,7 @@ int CheckFile(const char* filename) {
                 return 0;
             }
 
-            if (strlen(line) <= cntStars + 1) {
+            if (strlen(line) <= (size_t)(cntStars + 1)) {
                 printf("Ошибка в строке %d: должен быть текст после '%c'\n",
                         lineNumber, line[cntStars]);
                 fclose(file);

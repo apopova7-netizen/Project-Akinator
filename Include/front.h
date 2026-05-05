@@ -11,6 +11,7 @@ void DefaultTreeError();
 void PrintQuestion(TreeNode* cur);
 void Assumption(TreeNode* cur);
 void Victory();
+void MemoryError();
 void Mistake();
 void PlayAgain();
 void EndGame();
