@@ -1,115 +1,113 @@
-# Отчёт по тестированию проекта «Акинатор»
+# Akinator Project Testing Report
 
-## 1. Общая информация
+## 1. General information
 
-В рамках проекта было проведено комплексное тестирование консольного приложения «Акинатор», реализованного на языке C.
+As part of the project, a comprehensive testing of the Akinator console application, implemented in the C language, was carried out.
 
-Цель тестирования — проверить:
+The purpose of testing is to verify:
 
-* корректность угадывания объектов;
-* правильность работы алгоритма обхода дерева;
-* корректность дообучения;
-* сохранение и загрузку дерева;
-* работу пользовательского ввода;
-* ведение статистики.
+* correct guessing of objects;
+* the correctness of the tree traversal algorithm;
+* correctness of further education;
+* saving and loading the tree;
+* User input operation;
+* maintaining statistics.
 
 ---
 
-## 2. Unit-тестирование
+##2. Unit testing
 
-Были реализованы и успешно пройдены следующие модульные тесты:
+The following unit tests were implemented and successfully passed:
 
 ### testGetAnswer
 
-Проверяет:
+Checks:
 
-* корректное распознавание ответов `да/нет`;
-* обработку различных регистров (`Да`, `ДА`, `нет` и т.д.);
-* повтор запроса при некорректном вводе.
+* correct recognition of yes/no answers;
+* processing of various registers ('Да', `да`, `нет`, etc.);
+* repeating the request in case of incorrect input.
 
-Результат:
-Все сценарии отработаны корректно.
-
+Result:
+All scenarios have been worked out correctly.
 ---
 
 ### testCheckFile
 
-Проверяет:
+Checks:
 
-* корректность формата файла дерева;
-* наличие корневого узла;
-* соответствие структуры дерева (каждый вопрос имеет 2 потомка);
-* корректность статистики.
+* correctness of the tree file format;
+* the presence of a root node;
+* matching the tree structure (each question has 2 descendants);
+* correctness of statistics.
 
-Результат:
-Некорректные файлы выявляются, корректные проходят проверку.
+Result:
+Incorrect files are detected, and the correct ones are checked.
 
 ---
 
 ### testBack
 
-Проверяет:
+Checks:
 
-* создание узлов дерева;
-* добавление нового вопроса и объекта;
-* корректность перестроения дерева.
+* creating tree nodes;
+* adding a new question and object;
+* the correctness of the tree reconstruction.
 
-Результат:
-Дерево изменяется корректно.
+Result:
+The tree is changing correctly.
 
 ---
 
 ### OtherTestsFront
 
-Проверяет:
+Checks:
 
-* корректность вывода сообщений;
-* работу функций взаимодействия с пользователем;
-* обработку строк.
+* the correctness of the message output;
+* operation of user interaction functions;
+* String processing.
 
-Результат:
-Интерфейс работает стабильно.
-
----
-
-## 3. Ручное тестирование
-
-### 3.1 Цель
-
-Проверить полный пользовательский сценарий:
-
-* угадывание;
-* ошибка;
-* дообучение;
-* повторная игра;
-* проверка сохранения;
-* проверка статистики.
+The result:
+The interface is stable.
 
 ---
 
-## 3.2 Начальные условия
+##3. Manual testing
 
-Используется файл дерева с начальными данными:
+### 3.1 Goal
+
+Check the full user script:
+
+* Guessing;
+* error;
+* additional training;
+* Re-play;
+* checking the save;
+* Checking statistics.
+
+---
+
+## 3.2 Initial conditions
+
+A tree file with initial data is used.:
 
 ```
 |26|25|
 ```
 
-* Угадано: 26
-* Не угадано: 25
+* Guessed: 26
+* Not guessed: 25
 
 ---
 
-## 3.3 Сценарий тестирования
+## 3.3 Test Scenario
 
 ---
 
-### ▶️ Сценарий 1 — корректное угадывание
+### ▶️ Scenario 1 — correct guessing
 
-Пользователь загадывает: **Компот**
+The user makes a wish: **компот**
 
-Последовательность:
-
+Sequence:
 1. Это напиток? → да
 2. Холодный? → да
 3. Сладкий? → да
@@ -117,7 +115,7 @@
 5. Его варят? → да
 6. В него обычно добавляют курагу? → да
 
-Программа:
+Program:
 
 Загадайте слово или словосочетание на тему 'Еда и напитки'.
 
@@ -163,20 +161,19 @@
 
 Введите да или нет:
 
-✔ Проверено:
+Verified:
 
-* корректный обход дерева;
-* достижение листа;
-* подтверждение угадывания.
+* correct tree traversal;
+* reaching the sheet;
+* Confirmation of guessing.
 
 ---
 
-### ▶️ Сценарий 2 — ошибка и дообучение
+### ▶️ Scenario 2 — error and post-training
+The user makes a wish: **Текила**
 
-Пользователь загадывает: **Текила**
 
-
-Последовательность:
+Sequence:
 
 1. Это напиток? → да
 2. Холодный? → да
@@ -193,7 +190,7 @@
     -> Сделана из агавы
 12. Как отвечать на этот вопрос для Текила? -> да
 
-Программа:
+Program:
 
 Загадайте слово или словосочетание на тему 'Еда и напитки'.
 
@@ -254,23 +251,23 @@
 Не угадано: 26
 ---
 
-Результат:
+Result:
 
-В дереве создаётся новый узел:
+A new node is being created in the tree:
 
-Проверено:
+Verified:
 
-* добавление нового узла;
-* корректная логика ветвления;
-* перестроение дерева.
+* adding a new node;
+* correct branching logic;
+* Rebuilding the tree.
 
 ---
 
-### ▶️ Сценарий 3 — повторная игра (проверка сохранения)
+### ▶️ Scenario 3 — replay (save check)
 
-Пользователь снова загадывает: **Текила**
+The user makes a wish again: **Текила**
 
-Путь:
+Way:
 
 1. Это напиток? → да
 2. Холодный? → да
@@ -283,7 +280,7 @@
 9. Сделана из агавы? → да
 
 
-Программа:
+Program:
 
 Загадайте слово или словосочетание на тему 'Еда и напитки'.
 
@@ -337,18 +334,17 @@
 
 Не угадано: 26
 
-✔ Проверено:
+Verified:
 
-* дерево обновилось;
-* изменения сохранились;
-* новая логика используется.
+* the tree has been updated;
+* the changes have been saved;
+* New logic is being used.
 
 ---
 
-### ▶Завершение и статистика
+### ▶Completion and statistics
 
-После завершения:
-
+After completion:
 ```
 Хотите сыграть еще?
 ```
@@ -361,58 +357,58 @@
 
 → да
 
-Программа выводит:
+The program outputs:
 
 ```
 Угадано: 28
 Не угадано: 26
 ```
 
-✔ Проверено:
+Verified:
 
-* статистика обновляется корректно:
+* statistics are updated correctly:
 
-  * +2 угадывания
-  * +1 ошибка
-
----
-
-## 4. Проверка сохранения и загрузки
-
-Проверено:
-
-* файл корректно перезаписывается;
-* новые данные сохраняются;
-* структура дерева не нарушается;
-* при повторном запуске изменения сохраняются.
+* +2 guesses
+* +1 error
 
 ---
 
-## 5. Проверка обработки ошибок
+## 4. Checking for saving and uploading
 
-Проверены следующие случаи:
+Verified:
 
-* ❗ ввод некорректных данных (не "да"/"нет")
-  → программа повторяет запрос;
-
-* ❗ повреждённый файл
-  → выводится сообщение об ошибке;
-
-* ❗ пустой файл
-  → создаётся дерево по умолчанию;
-
-* ❗ неверная структура дерева
-  → обнаруживается функцией `CheckFile`.
+* the file is being overwritten correctly;
+* New data is saved;
+* the structure of the tree is not broken;
+* When you restart, the changes are saved.
 
 ---
 
-## 6. Итог
+## 5. Error handling check
 
-В ходе тестирования установлено:
+The following cases have been tested:
 
-* все основные функции работают корректно;
-* алгоритм угадывания реализован правильно;
-* механизм дообучения функционирует корректно;
-* сохранение и загрузка дерева работают стабильно;
-* статистика ведётся без ошибок;
-* unit-тесты полностью пройдены.
+* ❗ entering incorrect data (not "yes"/"no")
+→ the program repeats the request;
+
+* ❗ corrupted file
+→ error message is displayed;
+
+* ❗ empty file
+  → the default tree is created;
+
+* ❗ incorrect tree structure
+  → detected by the `CheckFile' function.
+
+---
+
+## 6. Result
+
+During testing, it was established:
+
+* All basic functions are working correctly;
+* the guessing algorithm is implemented correctly;
+* the retraining mechanism is functioning correctly;
+* saving and loading the tree are stable;
+* Statistics are error-free;
+* unit tests are fully completed.
