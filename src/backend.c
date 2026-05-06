@@ -55,7 +55,7 @@ TreeNode* LoadTreeFile(const char* fileName, int* g, int* ng){
     
     while((text = ReadLine(tree, &type, &level)) != NULL){
         if (level > STACK_SIZE)
-            return NULL;    // нужно освобождение памяти
+            return NULL;
         TreeNode* newNode = (TreeNode*)malloc(sizeof(TreeNode));
         if (newNode == NULL)
             return NULL;
